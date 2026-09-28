@@ -1,0 +1,9 @@
+/telesieve
+/bin/
+*.exe
+*.test
+coverage.out
+coverage.html
+.DS_Store
+.idea/
+.vscode/
