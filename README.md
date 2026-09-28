@@ -4,11 +4,22 @@
 
 ## Install
 
+Pre-built binaries for Linux and macOS (amd64/arm64) are on
+[GitHub Releases](https://github.com/sysrqio/telesieve/releases).
+
 ```bash
 go build -o telesieve ./cmd/telesieve
 ```
 
 Requires Go 1.22+.
+
+### Cut a release
+
+Tag and push a version; CI runs tests and publishes release assets:
+
+```bash
+git tag v0.1.0 && git push origin v0.1.0
+```
 
 ## Usage
 
