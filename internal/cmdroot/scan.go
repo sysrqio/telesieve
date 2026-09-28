@@ -1,8 +1,6 @@
 package cmdroot
 
 import (
-	"os"
-
 	"github.com/spf13/cobra"
 	"github.com/sysrqio/telesieve/internal/cost"
 	"github.com/sysrqio/telesieve/internal/output"
@@ -46,11 +44,12 @@ func newScanCmd() *cobra.Command {
 			costRes := cost.Estimate(size, st.WastePercent(), rates, 30)
 			rep := output.BuildReport(provider, st, costRes, findings)
 			format := output.Format(outFmt)
-			if err := output.Render(os.Stdout, format, rep); err != nil {
+			if err := output.Render(cmd.OutOrStdout(), format, rep); err != nil {
 				return err
 			}
 			if maskPII && st.PIICritical {
-				os.Exit(2)
+				cmd.SilenceUsage = true
+				return newExitError(2)
 			}
 			return nil
 		},
